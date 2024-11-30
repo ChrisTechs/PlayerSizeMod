@@ -1,6 +1,7 @@
-package github.christechs.psm
+package github.christechs.psm.config
 
 import com.google.gson.annotations.Expose
+import github.christechs.psm.PlayerSizeMod
 import io.github.moulberry.moulconfig.Config
 import io.github.moulberry.moulconfig.annotations.Category
 

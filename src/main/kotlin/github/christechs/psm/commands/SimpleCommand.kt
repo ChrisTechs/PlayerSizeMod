@@ -1,4 +1,4 @@
-package github.christechs.psm
+package github.christechs.psm.commands
 
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender

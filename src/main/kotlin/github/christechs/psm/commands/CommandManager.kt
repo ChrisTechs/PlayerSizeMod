@@ -1,5 +1,6 @@
-package github.christechs.psm
+package github.christechs.psm.commands
 
+import github.christechs.psm.PlayerSizeMod
 import net.minecraft.command.ICommandSender
 import net.minecraft.util.BlockPos
 import net.minecraftforge.client.ClientCommandHandler

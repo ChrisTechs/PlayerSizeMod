@@ -1,4 +1,4 @@
-package github.christechs.psm
+package github.christechs.psm.config
 
 import com.google.gson.annotations.Expose
 import io.github.moulberry.moulconfig.annotations.ConfigEditorBoolean
@@ -14,7 +14,7 @@ class GeneralConfig {
     var enabled: Boolean = false
 
     @Expose
-    @ConfigOption(name = "Player Size", desc = "Size of you own player model.")
+    @ConfigOption(name = "Player Size", desc = "Size of your own player model.")
     @ConfigEditorSlider(minValue = 0.1F, maxValue = 2.0F, minStep = 0.1F)
     @JvmField
     var playerSize: Float = 1.0F
@@ -24,5 +24,11 @@ class GeneralConfig {
     @ConfigEditorSlider(minValue = 0.1F, maxValue = 2.0F, minStep = 0.1F)
     @JvmField
     var otherPlayerSize: Float = 1.0F
+
+    @Expose
+    @ConfigOption(name = "NPC Size", desc = "Size of npc models.")
+    @ConfigEditorSlider(minValue = 0.1F, maxValue = 2.0F, minStep = 0.1F)
+    @JvmField
+    var npcSize: Float = 1.0F
 
 }
