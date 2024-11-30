@@ -58,13 +58,16 @@ val devenvMod: Configuration by configurations.creating {
 }
 
 dependencies {
-    implementation("net.hypixel:mod-api:1.0.1")
+    implementation("net.hypixel:mod-api-forge:1.0.1.1") {
+        exclude(group = "me.djtheredstoner", module = "DevAuth-forge-legacy")
+    }
+    shadowModImpl("net.hypixel:mod-api-forge-tweaker:1.0.1.1")
 
     minecraft("com.mojang:minecraft:1.8.9")
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
 
-    implementation(kotlin("stdlib-jdk8"))
+    shadowModImpl(kotlin("stdlib-jdk8"))
 
     // If you don't want to log in with your real minecraft account, remove this line
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
@@ -110,6 +113,7 @@ tasks.withType(Jar::class) {
     manifest.attributes.run {
         this["FMLCorePluginContainsFMLMod"] = "true"
         this["ForceLoadAsMod"] = "true"
+        this["FMLCorePlugin"] = "github.christechs.psm.tweaker.PlayerSizeModLoadingPlugin"
     }
 }
 
@@ -152,7 +156,7 @@ tasks.shadowJar {
 
     // If you want to include other dependencies and shadow them, you can relocate them in here
     relocate("io.github.moulberry.moulconfig", "$baseGroup.deps.moulconfig")
-    relocate("moe.nea.libautoupdate", "$baseGroup.deps.libautoupdate")
+    relocate("net.hypixel.modapi.tweaker", "github.christechs.psm.modapitweaker")
 }
 
 tasks.jar {

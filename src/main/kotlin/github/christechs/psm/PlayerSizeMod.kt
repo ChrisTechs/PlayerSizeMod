@@ -5,7 +5,6 @@ import net.hypixel.data.type.GameType
 import net.hypixel.modapi.HypixelModAPI
 import net.hypixel.modapi.packet.impl.clientbound.event.ClientboundLocationPacket
 import net.minecraft.client.Minecraft
-import net.minecraft.client.entity.AbstractClientPlayer
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraftforge.client.event.RenderPlayerEvent
 import net.minecraftforge.common.MinecraftForge
@@ -13,6 +12,7 @@ import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+import kotlin.math.min
 
 @Mod(modid = PlayerSizeMod.MOD_ID, version = "0.1",  useMetadata = true)
 class PlayerSizeMod {
@@ -26,7 +26,6 @@ class PlayerSizeMod {
         HypixelModAPI.getInstance().createHandler(
             ClientboundLocationPacket::class.java
         ) { packet: ClientboundLocationPacket ->
-            println(packet)
             serverType = if (packet.lobbyName.isPresent) {
                 LOBBY
             } else if (packet.serverType.isPresent && packet.serverType.get() == GameType.SKYBLOCK) {
@@ -50,18 +49,23 @@ class PlayerSizeMod {
 
     @SubscribeEvent
     fun onRenderPlayerPre(event: RenderPlayerEvent.Pre) {
-        if (!serverType.isAllowed()) return
         if (!config.generalConfig.enabled) return
 
-        val player: AbstractClientPlayer = event.entityPlayer as AbstractClientPlayer
+        val player = event.entityPlayer
+
+        val isClientPlayer = player.uniqueID.equals(Minecraft.getMinecraft().thePlayer.uniqueID)
 
         GlStateManager.pushMatrix()
         GlStateManager.translate(event.x, event.y, event.z)
 
-        val scale = if (player.uniqueID.equals(Minecraft.getMinecraft().thePlayer.uniqueID)) {
+        var scale = if (isClientPlayer) {
             config.generalConfig.playerSize
         } else {
             config.generalConfig.otherPlayerSize
+        }
+
+        if (!serverType.isAllowed()) {
+            scale = min(scale, 1.0F)
         }
 
         GlStateManager.scale(scale, scale, scale)
@@ -70,7 +74,6 @@ class PlayerSizeMod {
 
     @SubscribeEvent
     fun onRenderPlayerPost(event: RenderPlayerEvent.Post) {
-        if (!serverType.isAllowed()) return
         if (!config.generalConfig.enabled) return
         GlStateManager.popMatrix()
     }
