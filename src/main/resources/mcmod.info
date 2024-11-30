@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "${modid}",
+    "name": "PlayerSizeMod",
+    "description": "Mod that changes player size clientside.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Christian"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
