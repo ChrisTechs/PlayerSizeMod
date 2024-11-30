@@ -49,15 +49,6 @@ class PlayerSizeMod {
         MinecraftForge.EVENT_BUS.register(this)
     }
 
-
-    @SubscribeEvent
-    fun onEntityJoinWorld(event: EntityJoinWorldEvent) {
-        val entity = event.entity
-        if (entity is EntityPlayer) {
-            println(entity.name)
-        }
-    }
-
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         CommandManager()
