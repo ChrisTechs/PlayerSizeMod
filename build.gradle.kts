@@ -40,6 +40,8 @@ repositories {
 
     maven("https://repo.nea.moe/releases")
     maven("https://maven.notenoughupdates.org/releases")
+
+    maven("https://repo.hypixel.net/repository/Hypixel")
 }
 
 val shadowImpl: Configuration by configurations.creating {
@@ -56,6 +58,8 @@ val devenvMod: Configuration by configurations.creating {
 }
 
 dependencies {
+    implementation("net.hypixel:mod-api:1.0.1")
+
     minecraft("com.mojang:minecraft:1.8.9")
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
