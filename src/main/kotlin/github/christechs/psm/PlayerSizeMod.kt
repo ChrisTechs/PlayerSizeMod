@@ -60,7 +60,9 @@ class PlayerSizeMod {
 
         val player = event.entityPlayer
 
-        if (player.team != null && player.team.registeredName.startsWith("fkt", true)) {
+        if (player.team != null &&
+            player.team.registeredName != null &&
+            player.team.registeredName.startsWith("fkt", true)) {
             return
         }
 
@@ -93,7 +95,9 @@ class PlayerSizeMod {
 
         val player = event.entityPlayer
 
-        if (player.team != null && player.team.registeredName.startsWith("fkt", true)) {
+        if (player.team != null &&
+            player.team.registeredName != null &&
+            player.team.registeredName.startsWith("fkt", true)) {
             return
         }
 
