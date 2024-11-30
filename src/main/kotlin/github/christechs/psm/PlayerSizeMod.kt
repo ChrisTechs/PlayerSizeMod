@@ -73,10 +73,10 @@ class PlayerSizeMod {
         GlStateManager.pushMatrix()
         GlStateManager.translate(event.x, event.y, event.z)
 
-        var scale = if (isNPC) {
-            config.generalConfig.npcSize
-        } else if (isClientPlayer) {
+        var scale = if (isClientPlayer) {
             config.generalConfig.playerSize
+        } else if (isNPC) {
+            config.generalConfig.npcSize
         } else {
             config.generalConfig.otherPlayerSize
         }
