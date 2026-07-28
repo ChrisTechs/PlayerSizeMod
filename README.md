@@ -4,6 +4,6 @@ git clone https://github.com/ChrisTechs/PlayerSizeMod
 
 cd PlayerSizeMod
 
-./gradlew remapJar
+./gradlew build
 
 The jar will be in build/libs
