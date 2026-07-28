@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}-${mc_version}",
+  "name": "${mod_name}",
+  "description": "Mod that changes player size clientside",
+  "icon": "assets/${mod_id}/logo.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "io.github.christechs.psm.PlayerSizeMod"
+    ]
+  },
+  "mixins": [
+    "psm.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "~${minor_mc_version}",
+    "fabricloader": ">=0.15.11",
+    "fabric-api": "*",
+    "hypixel-mod-api": ">=1.0.1"
+  }
+}
